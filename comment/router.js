@@ -2,6 +2,14 @@ const { Router } = require("express");
 const Comment = require("./model");
 const router = new Router();
 
+router.get("/", (request, response, next) => {
+    response.send(`<html>
+    <body>
+      <h2>Welcome to homepage</h2>
+      
+    </body>
+  </html>`)  
+});
 router.post("/comment", (request, response, next) => {
   Comment.create(request.body)
     .then(result => response.send(result))
