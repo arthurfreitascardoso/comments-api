@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const Comment = require("./model");
 const router = new Router();
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -18,7 +17,7 @@ router.get("/", (request, response, next) => {
   </html>`)  
 });
 
-router.get('/comment', async (req, res) => {
+router.get('/db', async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM comment_table');
@@ -30,7 +29,7 @@ router.get('/comment', async (req, res) => {
     res.send("Error " + err);
   }
 })
-router.post('/comment', async (req, res) => {
+router.post('/db', async (req, res) => {
   try {
     
     const { author, comment } = req.body;

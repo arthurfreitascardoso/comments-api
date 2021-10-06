@@ -1,7 +1,5 @@
 const express = require("express");
 const port = process.env.PORT || 4001;
-const db = require("./db");
-const Event = require("./comment/model");
 const cors = require("cors");
 //const bodyParser = require("body-parser");
 const router = require("./comment/router");
