@@ -62,7 +62,7 @@ router.get('/db', async (req, res) => {
 })
 router.post('/db', async (req, res) => {
   try {
-    const reqJson = req.toJSON();
+    const reqJson = req.toJSON;
     //const { author, comment } = req.body;
     const author = reqJson[author];
     const comment = reqJson[comment];
