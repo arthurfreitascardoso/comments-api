@@ -17,7 +17,7 @@ router.get("/", (request, response, next) => {
     </body>
   </html>`)  
 });
-router.post("/comment", (request, response, next) => {
+/*router.post("/comment", (request, response, next) => {
   Comment.create(request.body)
     .then(result => response.send(result))
     .catch(errors => next(erros));
@@ -46,12 +46,24 @@ router.delete("/comment/:id", (request, response, next) =>
   Comment.destroy({ where: { id: request.params.id } })
     .then(number => response.send({ number }))
     .catch(next)
-);
+);*/
 
 router.get('/db', async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM comment_table');
+    const results = { 'results': (result) ? result.rows : null};
+    res.send( results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
+router.post('/db', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('INSERT INTO comment_table VALUES (' + req[author] + ', '+ req[comment] + ')');
     const results = { 'results': (result) ? result.rows : null};
     res.send( results );
     client.release();
