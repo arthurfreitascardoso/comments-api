@@ -1,6 +1,13 @@
 const { Router } = require("express");
 const Comment = require("./model");
 const router = new Router();
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 router.get("/", (request, response, next) => {
     response.send(`<html>
