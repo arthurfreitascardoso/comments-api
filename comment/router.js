@@ -51,7 +51,7 @@ router.delete("/comment/:id", (request, response, next) =>
 router.get('/db', async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM test_table');
+    const result = await client.query('SELECT * FROM comment_table');
     const results = { 'results': (result) ? result.rows : null};
     res.send( results );
     client.release();
