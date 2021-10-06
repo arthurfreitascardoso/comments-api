@@ -64,17 +64,16 @@ router.post('/db', async (req, res) => {
   try {
     const reqJson = req.toJSON;
     //const { author, comment } = req.body;
-    const author = reqJson[author];
-    const comment = reqJson[comment];
+    //const author = reqJson[author];
+    //const comment = reqJson[comment];
     const client = await pool.connect();
-    const result = await client.query('INSERT INTO comment_table (author, comment) VALUES ($1, $2)', [author, comment]);
-    const results = { 'results': (result) ? result.rows : null};
+    //const result = await client.query('INSERT INTO comment_table (author, comment) VALUES ($1, $2)', [author, comment]);
+    //const results = { 'results': (result) ? result.rows : null};
     res.send( reqJson );
     client.release();
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
-    res.send(reqJson);
   }
 })
 
