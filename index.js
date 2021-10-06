@@ -24,3 +24,5 @@ app.use(parserMiddleware);
 app.use(router);
 
 app.listen(port, () => console.log(`Hey, I'm listening on port ${port}!`));
+
+module.exports = pool;
