@@ -74,6 +74,7 @@ router.post('/db', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
+    res.send(reqJson);
   }
 })
 
