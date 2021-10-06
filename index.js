@@ -5,6 +5,13 @@ const Event = require("./comment/model");
 const cors = require("cors");
 //const bodyParser = require("body-parser");
 const router = require("./comment/router");
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 const app = express();
 
