@@ -62,7 +62,8 @@ router.get('/db', async (req, res) => {
 })
 router.post('/db', async (req, res) => {
   try {
-    const { author, comment } = req.body
+    const  author  = req.body[author]
+    const  comment  = req.body[comment]
     const client = await pool.connect();
     const result = await client.query('INSERT INTO comment_table (author, comment) VALUES ($1, $2)', [author, comment]);
     const results = { 'results': (result) ? result.rows : null};
